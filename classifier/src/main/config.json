@@ -1,0 +1,23 @@
+  {
+  "app": {
+    "bundleName": "com.example.foodclassifier.sample",
+    "vendor": "example",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {
+  },
+  "module": {
+    "package": "com.example.foodclassifier.classifier",
+    "deviceType": [
+      "phone" ,"tablet"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "classifier",
+      "moduleType": "har"
+    }
+  }
+}
