@@ -17,7 +17,6 @@ ohos {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar', '*.har'])
     testImplementation 'junit:junit:4.13'
     implementation 'dev.applibgroup:tvm:1.0.0'
     ohosTestImplementation 'com.huawei.ohos.testkit:runner:1.0.0.100'
