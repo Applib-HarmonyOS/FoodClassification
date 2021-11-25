@@ -31,7 +31,7 @@ public class FoodClassifierSlice extends AbilitySlice {
         String outputlabel = null;
         Classifier myclassifier = new Classifier(MODEL_INPUT_IMAGE_PATH, MODEL_INPUT_IMAGE_NAME,
                 getResourceManager(), getCacheDir());
-        outputlabel = myclassifier.get_output();
+        outputlabel = myclassifier.getOutput();
         resourcesText.setText(" ");
         resourcesText.setText(
                 "Predicted label : " + outputlabel + System.lineSeparator() + " Finish Prediction !!!");

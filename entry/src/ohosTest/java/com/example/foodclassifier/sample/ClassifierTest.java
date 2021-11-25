@@ -9,19 +9,17 @@ import static org.junit.Assert.assertEquals;
 
 public class ClassifierTest {
 	
-	private static String img_path = "entry/resources/rawfile/image_3_thumb.jpg";
-	private static String img_name = "image_3_thumb.jpg";
-	private Context mContext;
-	private Classifier mtestclassifier;
-	
+    private static String imgPath = "entry/resources/rawfile/image_3_thumb.jpg";
+    private static String imgName = "image_3_thumb.jpg";
+
     @Test
     public void test() {
+
+	Context mContext = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext();
+
+	Classifier mtestclassifier = new Classifier(imgPath, imgName, mContext.getResourceManager(), mContext.getCacheDir());
     	
-    	mContext = AbilityDelegatorRegistry.getAbilityDelegator().getAppContext();
-    	
-    	mtestclassifier = new Classifier(img_path, img_name, mContext.getResourceManager(), mContext.getCacheDir());
-    	
-    	String output = mtestclassifier.get_output();
+        String output = mtestclassifier.getOutput();
     	
         assertEquals("Ramen", output);
     }

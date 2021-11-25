@@ -54,25 +54,25 @@ public class Classifier {
      * @param path - path for input image
      * @param name - name of input image
      * @param resm - ResourceManager GetResourceManager()
-     * @param f    - CacheDir()
+     * @param cachedir    - CacheDir()
      */
 
-    public Classifier(String path, String name, ResourceManager resm, File f) {
+    public Classifier(String path, String name, ResourceManager resm, File cachedir) {
         this.imagePath = path;
         this.imageName = name;
         this.resManager = resm;
-        this.cachedir = f;
-        this.label = run_food_classification();
+        this.cachedir = cachedir;
+        this.label = runFoodClassification();
     }
 
-    public String get_output() {
+    public String getOutput() {
         return label;
     }
 
     /**
      * Main Function to run food classifier.
      */
-    public String run_food_classification() {
+    public String runFoodClassification() {
 
         // load json graph
         String modelGraph = null;
@@ -93,7 +93,7 @@ public class Classifier {
             file = getFileFromRawFile(MODEL_CPU_LIB_FILE_NAME, rawFileEntryModelLib, cachedir);
             modelLib = Module.load(file.getAbsolutePath());
         } catch (NullPointerException | IOException e) {
-            e.printStackTrace();
+            return null; //failure
         }
 
         Function runtimeCreFun = Function.getFunction("tvm.graph_executor.create");
@@ -110,7 +110,6 @@ public class Classifier {
         try {
             modelParams = getBytesFromRawFile(rawFileEntryModelParams);
         } catch (IOException e) {
-            e.printStackTrace();
             return null; //failure
         }
 
@@ -123,7 +122,7 @@ public class Classifier {
         try {
             fileImage = getFileFromRawFile(imageName, rawFileEntryImage, cachedir);
         } catch (IOException e) {
-            e.printStackTrace();
+            return null; //failure
         }
 
         ImageSource imageSource = ImageSource.create(fileImage, null);
@@ -150,7 +149,7 @@ public class Classifier {
         // get the function from the module(set input data)
         NDArray inputNdArray = NDArray.empty(new long[]{1, imgChannel,
             modelInputSize, modelInputSize}, new TVMType("uint8"));
-        ;
+
         inputNdArray.copyFromRaw(imgRgbValues);
         Function setInputFunc = graphExecutorModule.getFunction("set_input");
         setInputFunc.pushArg(inputName).pushArg(inputNdArray).invoke();
@@ -205,7 +204,7 @@ public class Classifier {
                     outputlabel = labelarray[maxPosition];
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                return null; //failure
             }
         }
         return outputlabel;
