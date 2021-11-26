@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "mainability_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "button_example_ability",
+      "value": "Food Classifier"
+    },
+    {
+      "name": "start_app",
+      "value": "Start App"
+    },
+    {
+      "name": "select_timezone_text",
+      "value": "Output Display"
+    },
+    {
+      "name": "getResources",
+      "value": "Food Classification Model Output"
+    }
+  ]
+}
