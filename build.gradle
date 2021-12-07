@@ -4,7 +4,7 @@ apply plugin: 'org.sonarqube'
 apply plugin: 'checkstyle'
 
 ohos {
-    compileSdkVersion 5
+    compileSdkVersion 6
     defaultConfig {
         compatibleSdkVersion 5
     }
